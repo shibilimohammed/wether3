@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                 ' ${proobj.smo?.name ?? 'Search Location'}',
                 style: TextStyle(color: Colors.white, fontSize: 13),
               ),
-              proobj.circle == true
+              proobj.circleindicator == true
                   ? CircularProgressIndicator(
                       color: Colors.amber,
                     )

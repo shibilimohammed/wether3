@@ -9,19 +9,19 @@ class SProvider extends ChangeNotifier {
   final apiID = '1c8ebe33bcbcb6803d2787b2c55b1d6d';
 
   Smodel? smo;
-  bool circle = false;
+  bool circleindicator = false;
   Future<void> fetchUser({required String city}) async {
-    circle = true;
+    circleindicator = true;
     final response = await http.get(Uri.parse(
         'http://api.openweathermap.org/data/2.5/weather?q=$city&appid=1c8ebe33bcbcb6803d2787b2c55b1d6d&units=metric'));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       smo = Smodel.fromjson(data);
-      circle = false;
+      circleindicator = false;
       notifyListeners();
     } else {
-      circle = false;
+      circleindicator = false;
       //throw Exception('Failed to load user');
     }
   }
@@ -33,12 +33,12 @@ class SProvider extends ChangeNotifier {
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
         if (permission == LocationPermission.denied) {
-          circle = false;
+          circleindicator = false;
           return Future.error('Location permissions are denied');
         }
       }
       if (permission == LocationPermission.deniedForever) {
-        circle = false;
+        circleindicator = false;
         // Permissions are denied forever, handle appropriately.
         return Future.error(
             'Location permissions are permanently denied, we cannot request permissions.');
@@ -48,13 +48,13 @@ class SProvider extends ChangeNotifier {
           desiredAccuracy: LocationAccuracy.high);
     } on LocationServiceDisabledException catch (e) {
       print('$e');
-      circle = false;
+      circleindicator = false;
       return Future.error('Location  permissions$e.');
     }
   }
 
   Future<void> fetchCurrentWeather() async {
-    circle = true;
+    circleindicator = true;
     notifyListeners();
     Position position = await determinePosition();
 
@@ -71,11 +71,11 @@ class SProvider extends ChangeNotifier {
       Smodel? d = Smodel.fromjson(jsonWeatherData);
       smo = d;
 
-      circle = false;
+      circleindicator = false;
       notifyListeners();
     } else {
       print('Failed to fetch weather data');
-      circle = false;
+      circleindicator = false;
       notifyListeners();
     }
     notifyListeners();
