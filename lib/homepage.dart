@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                 ' ${proobj.smo?.name ?? 'Search Location'}',
                 style: TextStyle(color: Colors.white, fontSize: 13),
               ),
-              proobj.vattam == true
+              proobj.circle == true
                   ? CircularProgressIndicator(
                       color: Colors.amber,
                     )
@@ -209,7 +209,7 @@ class HomePage extends StatelessWidget {
                   '${proobj.smo?.temperature ?? 0}°C',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 45,  
+                      fontSize: 45,
                       fontWeight: FontWeight.w500),
                 ),
                 Row(

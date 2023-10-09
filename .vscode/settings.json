@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/TH/Desktop/Weather app3/wether3/linux"
+    "cmake.sourceDirectory": "C:/Users/TH/Desktop/Weather app3/wether3/linux",
+    "C_Cpp.errorSquiggles": "disabled"
 }
